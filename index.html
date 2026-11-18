@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#091326">
+<title>GK LUDO — Ultimate Arena</title>
+<style>
+:root{--bg:#091326;--panel:#111f38;--panel2:#192b49;--line:#2c4265;--gold:#ffd36a;--txt:#f5f7fc;--muted:#a8b7d0;--green:#3bd49f;--red:#ff7777;--blue:#79adff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#2c4775 0,#091326 58%);color:var(--txt);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}button,input,select,textarea{font:inherit}button{border:0;border-radius:12px;padding:11px 15px;background:var(--gold);color:#171717;font-weight:850;cursor:pointer}button.secondary{background:#263c60;color:#fff;border:1px solid #45618a}button.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}button.danger{background:#73313e;color:#fff}button:disabled{opacity:.45}.wrap{max-width:1180px;margin:auto;padding:15px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:7px 0 17px}.brand{font-weight:1000;font-size:24px;display:flex;align-items:center;gap:10px}.logo{width:46px;height:46px;border-radius:14px;background:conic-gradient(#ff5252 0 25%,#ffd740 0 50%,#35d07f 0 75%,#448aff 0);display:grid;place-items:center;color:#101827;font-weight:1000}.muted{color:var(--muted);font-size:13px}.pill{display:inline-block;border:1px solid #435b7f;border-radius:99px;padding:6px 10px;color:var(--muted);font-size:12px}.hero{background:linear-gradient(120deg,#294b7e,#172742);border:1px solid #4a6790;border-radius:22px;padding:23px;margin-bottom:14px;position:relative;overflow:hidden}.hero:after{content:"🎲";position:absolute;right:25px;top:10px;font-size:95px;opacity:.12}.hero h1{font-size:clamp(27px,5vw,43px);margin:0 0 7px}.hero p{color:#d3def0;margin:0 0 15px;max-width:600px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:13px 0}.stat,.card{background:rgba(17,31,56,.97);border:1px solid var(--line);border-radius:17px;padding:15px}.stat b{display:block;font-size:23px}.stat span{font-size:12px;color:var(--muted)}.nav{display:flex;gap:7px;overflow:auto;padding:4px 0 13px;scrollbar-width:thin}.nav button{white-space:nowrap;background:#1b2d4a;color:#eaf0fa;border:1px solid #344e74}.nav button.active{background:var(--gold);color:#171717;border-color:var(--gold)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.field{display:grid;gap:6px;margin:10px 0}.field label{font-size:13px;color:var(--muted)}input,select,textarea{width:100%;padding:11px 12px;border-radius:11px;border:1px solid #405777;background:#0c192d;color:white;outline:none}textarea{min-height:80px;resize:vertical}.notice{border:1px solid #80652c;background:#382f1b;color:#ffe6a6;border-radius:12px;padding:12px;font-size:13px;margin:12px 0}.good{color:var(--green)}.bad{color:var(--red)}.hidden{display:none!important}.empty{text-align:center;padding:25px;color:var(--muted)}.code{font-size:25px;letter-spacing:3px;color:var(--gold);font-weight:950}.listrow{padding:12px 0;border-bottom:1px solid var(--line)}.listrow:last-child{border:0}.tag{font-size:11px;border-radius:7px;padding:4px 7px;background:#263957;color:#dbe7fa}.page h2{margin:7px 0 13px}.kpi{font-size:27px;font-weight:950;color:var(--gold)}.modal{position:fixed;inset:0;background:#000b;display:grid;place-items:center;padding:14px;z-index:8}.modalbox{width:min(500px,100%);max-height:90vh;overflow:auto;background:#17243d;border:1px solid #496184;border-radius:18px;padding:18px}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#263957;border:1px solid #526a8e;color:white;border-radius:12px;padding:11px 15px;z-index:10;display:none;max-width:90%;text-align:center}footer{text-align:center;color:#8493ac;font-size:12px;padding:22px 0}.avatar{width:58px;height:58px;border-radius:18px;background:#344e75;display:grid;place-items:center;font-size:27px}.bar{height:9px;border-radius:99px;background:#263957;overflow:hidden}.bar i{display:block;height:100%;background:var(--green);width:40%}
+@media(max-width:720px){.grid,.three{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.top{align-items:flex-start}.hero{padding:18px}.stat{padding:11px}.stat b{font-size:20px}}
+</style>
+</head>
+<body><div class="wrap">
+<header class="top"><div class="brand"><div class="logo">GK</div><div>GK <span style="color:var(--gold)">LUDO</span><div class="muted">ULTIMATE PLAYER ARENA</div></div></div><div class="row"><span id="headerUser" class="pill">Guest Player</span><button class="secondary" onclick="openLogin()">Login / Sign up</button></div></header>
+<section class="hero"><h1>खेलो दिल से, जीतो दिल से!</h1><p>अपना मैच चुनें, Room Code से जुड़ें और अपनी गेम कम्युनिटी का हिस्सा बनें। GK LUDO — Firebase से जुड़ा Match और Room Code प्लेटफॉर्म।</p><div class="actions"><button onclick="go('battles')">⚔️ Battles देखें</button><button class="secondary" onclick="go('create')">＋ Match बनाएँ</button></div></section>
+<section class="stats"><div class="stat"><b id="sMatches">0</b><span>मेरे मैच</span></div><div class="stat"><b id="sWins">0</b><span>जीत</span></div><div class="stat"><b id="sPoints">0</b><span>डेमो पॉइंट्स</span></div><div class="stat"><b id="sRef">0</b><span>रेफरल</span></div></section>
+<nav class="nav"><button class="active" data-page="home" onclick="go('home')">🏠 Home</button><button data-page="battles" onclick="go('battles')">⚔️ Battles</button><button data-page="create" onclick="go('create')">＋ Create</button><button data-page="join" onclick="go('join')">🔑 Join Room</button><button data-page="history" onclick="go('history')">📜 History</button><button data-page="wallet" onclick="go('wallet')">👛 Wallet</button><button data-page="tournaments" onclick="go('tournaments')">🏆 Tournament</button><button data-page="leaderboard" onclick="go('leaderboard')">📊 Leaderboard</button><button data-page="referral" onclick="go('referral')">🎁 Refer</button><button data-page="support" onclick="go('support')">🎧 Support</button><button data-page="profile" onclick="go('profile')">👤 Profile</button><button data-page="admin" onclick="go('admin')">🛡️ Admin</button><button data-page="rules" onclick="go('rules')">📖 Rules</button></nav>
+<main>
+<section id="home" class="page"><div class="grid"><div class="card"><h3>🎮 शुरुआत कैसे करें?</h3><p class="muted">1. Battle चुनें या बनाएँ। 2. Room Code और password शेयर करें। 3. Ludo King ऐप में मैच खेलें। 4. रिजल्ट सबमिट करें।</p><button class="secondary" onclick="go('rules')">पूरे नियम पढ़ें</button></div><div class="card"><h3>🌟 GK LUDO Updates</h3><p class="muted">नया डिजाइन • Player profile • Match history • Demo wallet • Tournament UI • Admin panel • Support tickets</p><span class="tag">Firebase Prototype • v3</span></div></div><h2>🔥 Featured Battles</h2><div id="featured"></div><div class="notice">Firebase OTP और Cloud Match के लिए Login करें। Wallet, Tournament, Referral और Results अभी Demo हैं।</div></section>
+<section id="battles" class="page hidden"><div class="row"><h2>⚔️ Available Battles</h2><button onclick="go('create')">＋ Create</button></div><div class="field"><input id="battleSearch" placeholder="मैच खोजें..." oninput="renderBattles()"></div><div id="battleList"></div></section>
+<section id="create" class="page hidden"><h2>＋ Create New Battle</h2><div class="card"><div class="grid"><div class="field"><label>Match का नाम</label><input id="cName" placeholder="जैसे Evening Battle"></div><div class="field"><label>खिलाड़ी</label><select id="cPlayers"><option value="2">2 Players</option><option value="4">4 Players</option></select></div><div class="field"><label>Entry</label><input value="Free match only" disabled></div><div class="field"><label>मैच का प्रकार</label><select id="cType"><option>Classic</option><option>Quick Match</option><option>Friendly</option><option>Tournament Qualifier</option></select></div><div class="field"><label>Ludo King Room Code (वैकल्पिक)</label><input id="cRoom" placeholder="बाद में भी डाल सकते हैं"></div></div><div class="field"><label>नोट / निर्देश</label><textarea id="cNote" placeholder="मैच शुरू होने का समय, नियम आदि"></textarea></div><button onclick="createMatch()">Battle Publish करें</button></div></section>
+<section id="join" class="page hidden"><h2>🔑 Join Room</h2><div class="card"><div class="field"><label>Match ID</label><input id="joinCode" placeholder="जैसे GK12345"></div><button onclick="joinMatch()">Join Match</button><p class="muted">पहले Match ID से Join करें। Join होने के बाद Host का Room Code दिखेगा।</p></div></section>
+<section id="history" class="page hidden"><h2>📜 My Match History</h2><div id="historyList"></div></section>
+<section id="wallet" class="page hidden"><h2>👛 Demo Wallet <span class="tag">Local only</span></h2><div class="grid"><div class="card"><div class="muted">Demo Balance</div><div class="kpi" id="walletBal">1000 pts</div><p class="muted">यह सिर्फ स्थानीय Demo Points हैं। Firebase wallet या नकद राशि नहीं है।</p></div><div class="card"><h3>Wallet Activity</h3><div id="walletLog" class="muted">अभी कोई activity नहीं।</div></div></div><div class="notice">इस डेमो में deposit, withdrawal, UPI या cash prize उपलब्ध नहीं हैं। किसी भी real-money सुविधा से पहले लागू भारतीय कानून और payment-provider नियमों की जाँच जरूरी है।</div></section>
+<section id="tournaments" class="page hidden"><h2>🏆 Tournaments <span class="tag">Demo only</span></h2><div class="grid"><div class="card"><span class="tag">Coming Soon • Demo</span><h3>Weekend Champions</h3><p class="muted">8 खिलाड़ी • Knockout format • Room Code आधारित मैच</p><div class="bar"><i style="width:62%"></i></div><p class="muted">Demo registration progress</p><button class="secondary" onclick="toast('Tournament registration demo में दिखाया गया है।')">Register Interest</button></div><div class="card"><span class="tag">Coming Soon • Demo</span><h3>Daily Friendly Cup</h3><p class="muted">4 खिलाड़ी • Friendly mode • No cash prize</p><button class="secondary" onclick="toast('आपकी रुचि demo में दर्ज हुई।')">Join List</button></div></div></section>
+<section id="leaderboard" class="page hidden"><h2>📊 Leaderboard</h2><div id="leaderList"></div></section>
+<section id="referral" class="page hidden"><h2>🎁 Refer & Invite <span class="tag">Demo only</span></h2><div class="card"><h3>आपका Demo Referral Code</h3><div class="code" id="refCode">GK-PLAYER</div><p class="muted">दोस्तों को अपना कोड बताएं। यह demo referral display है; असली referral tracking backend से जुड़ेगी।</p><button onclick="copyRef()">Copy Referral Code</button></div></section>
+<section id="support" class="page hidden"><h2>🎧 Help & Support</h2><div class="grid"><div class="card"><h3>नया Support Ticket</h3><div class="field"><label>समस्या का प्रकार</label><select id="ticketType"><option>Login Help</option><option>Match Issue</option><option>Room Code Problem</option><option>Result Dispute</option><option>Other</option></select></div><div class="field"><label>अपनी समस्या लिखें</label><textarea id="ticketText" placeholder="पूरी जानकारी लिखें..."></textarea></div><button onclick="createTicket()">Ticket Submit</button></div><div class="card"><h3>मेरे Tickets</h3><div id="ticketList" class="muted">अभी कोई ticket नहीं।</div></div></div></section>
+<section id="profile" class="page hidden"><h2>👤 My Profile</h2><div class="card"><div class="row"><div class="row"><div class="avatar">👤</div><div><b id="profileName">Guest Player</b><div class="muted" id="profilePhone">Phone not verified</div></div></div><span class="tag">Player</span></div><div class="grid"><div class="field"><label>आपका नाम</label><input id="pName" placeholder="नाम"></div><div class="field"><label>मोबाइल नंबर</label><input id="pPhone" inputmode="numeric" maxlength="10" placeholder="10 digit mobile"></div></div><div class="field"><label>शहर (वैकल्पिक)</label><input id="pCity" placeholder="आपका शहर"></div><button onclick="saveProfile()">Profile Save करें</button><p class="muted">मोबाइल नंबर OTP Login से verify होगा। Profile का नाम और शहर Firebase में सेव होंगे।</p></div></section>
+<section id="admin" class="page hidden"><h2>🛡️ Admin Control Panel</h2><div id="adminLock" class="card"><p class="notice">Admin Panel अभी बंद है। इसे चालू करने के लिए Firebase Custom Claims और सुरक्षित server-side Cloud Functions जरूरी हैं। इस वेबसाइट में कोई Demo PIN सुरक्षित Admin Login नहीं है।</p></div><div id="adminPanel" class="hidden"><div class="stats"><div class="stat"><b id="aTotal">0</b><span>Total Matches</span></div><div class="stat"><b id="aTickets">0</b><span>Support Tickets</span></div><div class="stat"><b id="aClaims">0</b><span>Result Claims</span></div><div class="stat"><b>Demo</b><span>Environment</span></div></div><div class="card"><h3>Match Management</h3><div id="adminMatches"></div></div><div class="card" style="margin-top:12px"><h3>Result Claims</h3><div id="adminClaims"></div></div><div class="card" style="margin-top:12px"><h3>Support Tickets</h3><div id="adminTickets"></div></div></div></section>
+<section id="rules" class="page hidden"><h2>📖 Match Rules & Safety</h2><div class="card"><ol><li>सभी खिलाड़ी मैच शुरू होने से पहले नियम पढ़ें।</li><li>Room Code और password केवल मैच के खिलाड़ियों से साझा करें।</li><li>मैच Ludo King जैसे अलग ऐप में खेला जाता है; GK LUDO उस गेम को नियंत्रित नहीं करता।</li><li>मैच के बाद सही परिणाम और प्रमाण जमा करें।</li><li>विवाद होने पर Support में ticket बनाएं।</li><li>किसी खिलाड़ी का OTP, password या निजी जानकारी साझा न करें।</li><li>नकद पुरस्कार या भुगतान का वादा इस demo में नहीं है।</li></ol><div class="notice">GK LUDO इस समय UI prototype है, कोई आधिकारिक Ludo King सेवा नहीं है।</div></div></section>
+</main><footer>GK LUDO • Ultimate Arena Demo • Play Fair, Play Safe</footer></div>
+<div id="modal" class="modal hidden"><div class="modalbox"><div class="row"><h3 id="modalTitle">Login</h3><button class="ghost" onclick="closeModal()">✕</button></div><div id="modalBody"></div></div></div><div id="toast" class="toast"></div>
+<script>
+const KEY='gkludo_ultimate_v2';
+let db=load(),adminOn=false;
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{profile:{name:'Guest Player',phone:'',city:''},matches:[],claims:[],tickets:[],wallet:1000,logs:[],referrals:0}}catch(e){return {profile:{name:'Guest Player',phone:'',city:''},matches:[],claims:[],tickets:[],wallet:1000,logs:[],referrals:0}}}
+function save(){localStorage.setItem(KEY,JSON.stringify(db));refresh()}
+function id(){return 'GK'+Math.random().toString(36).slice(2,7).toUpperCase()}
+function toast(t){let e=document.getElementById('toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',2600)}
+function go(p){document.querySelectorAll('.page').forEach(x=>x.classList.add('hidden'));document.getElementById(p).classList.remove('hidden');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===p));if(p==='battles')renderBattles();if(p==='history')renderHistory();if(p==='leaderboard')renderLeaderboard();if(p==='support')renderTickets();if(p==='admin'&&adminOn)renderAdmin();window.scrollTo(0,0)}
+function openModal(title,body){document.getElementById('modalTitle').textContent=title;document.getElementById('modalBody').innerHTML=body;document.getElementById('modal').classList.remove('hidden')}
+function closeModal(){document.getElementById('modal').classList.add('hidden')}
+function openLogin(){openModal('Player Login / Sign up',`<p class="muted">यह login screen अभी demo है। असली SMS OTP के लिए Firebase Phone Authentication जोड़ना होगा।</p><div class="field"><label>Mobile Number</label><input id="loginPhone" inputmode="numeric" maxlength="10" placeholder="10 digit mobile number"></div><button onclick="demoLogin()">Continue (Demo)</button>`)}
+function demoLogin(){let n=document.getElementById('loginPhone').value.trim();if(!/^[6-9]\d{9}$/.test(n)){toast('सही 10 digit mobile number डालें');return}db.profile.phone=n;if(!db.profile.name||db.profile.name==='Guest Player')db.profile.name='Player '+n.slice(-4);save();closeModal();toast('Demo profile login हो गया')}
+function createMatch(){let name=document.getElementById('cName').value.trim();if(!name){toast('Match का नाम लिखें');return}let m={id:id(),name,players:+document.getElementById('cPlayers').value,entry:+document.getElementById('cEntry').value,type:document.getElementById('cType').value,room:document.getElementById('cRoom').value.trim(),pass:document.getElementById('cPass').value.trim(),note:document.getElementById('cNote').value.trim(),host:db.profile.name,status:'Open',joined:[db.profile.name],winner:'',created:new Date().toLocaleString('en-IN')};db.matches.unshift(m);db.logs.unshift({text:'Created '+m.name,time:new Date().toLocaleString('en-IN')});save();['cName','cRoom','cPass','cNote'].forEach(x=>document.getElementById(x).value='');toast('Battle बन गई: '+m.id);go('battles')}
+function renderBattles(){let q=(document.getElementById('battleSearch')?.value||'').toLowerCase();let a=db.matches.filter(m=>(m.name+m.id+m.type).toLowerCase().includes(q));let out=a.map(m=>`<div class="card" style="margin-bottom:10px"><div class="row"><div><span class="tag">${m.type}</span> <span class="tag">${m.status}</span><h3>${esc(m.name)}</h3><div class="muted">ID: ${m.id} • ${m.players} Players • Host: ${esc(m.host)}</div></div><div style="text-align:right"><b>${m.entry} pts</b><div class="muted">Demo entry</div></div></div><p class="muted">${esc(m.note||'No extra instructions')}</p><div class="actions"><button onclick="showMatch('${m.id}')">Details / Join</button><button class="secondary" onclick="copyText('${m.id}')">Copy Match ID</button></div></div>`).join('');document.getElementById('battleList').innerHTML=out||'<div class="empty">अभी कोई battle नहीं है। पहली battle बनाएँ।</div>'}
+function showMatch(mid){let m=db.matches.find(x=>x.id===mid);if(!m)return;openModal(m.name,`<p class="muted">Match ID: ${m.id}</p><p>Players: ${m.joined.length}/${m.players} • Status: ${m.status}</p><p>Room Code: <b>${esc(m.room||'Host ने अभी नहीं डाला')}</b></p><p>Room Password: <b>${m.pass?'••••••':'नहीं है'}</b></p><p class="muted">${esc(m.note)}</p><button onclick="joinById('${m.id}')">Join this Battle</button> <button class="secondary" onclick="closeModal()">Close</button>`)}
+function joinById(mid){let m=db.matches.find(x=>x.id===mid);if(!m)return;if(m.joined.includes(db.profile.name)){toast('आप पहले से joined हैं');return}if(m.joined.length>=m.players){toast('यह match full है');return}m.joined.push(db.profile.name);save();closeModal();toast('Match join हो गया (demo)')}
+function joinMatch(){let c=document.getElementById('joinCode').value.trim().toUpperCase(),p=document.getElementById('joinPass').value.trim();let m=db.matches.find(x=>x.id.toUpperCase()===c||x.room.toUpperCase()===c);if(!m){toast('यह match इस demo में नहीं मिला');return}if(m.pass&&m.pass!==p){toast('Room password गलत है');return}joinById(m.id)}
+function renderHistory(){let a=db.matches.filter(m=>m.joined.includes(db.profile.name)||m.host===db.profile.name);document.getElementById('historyList').innerHTML=a.map(m=>`<div class="listrow row"><div><b>${esc(m.name)}</b><div class="muted">${m.id} • ${m.created}</div></div><div><span class="tag">${m.status}</span><div class="actions"><button class="secondary" onclick="claimResult('${m.id}')">Submit Result</button><button class="ghost" onclick="dispute('${m.id}')">Dispute</button></div></div></div>`).join('')||'<div class="empty">आपकी match history खाली है।</div>'}
+function claimResult(mid){openModal('Submit Match Result',`<p class="muted">Match ID: ${mid}</p><div class="field"><label>आपके अनुसार Winner</label><input id="claimWinner" placeholder="Winner का नाम"></div><div class="field"><label>Result note</label><textarea id="claimNote" placeholder="स्कोर / जानकारी"></textarea></div><div class="field"><label>Screenshot (इस डिवाइस पर preview)</label><input id="claimFile" type="file" accept="image/*"></div><button onclick="saveClaim('${mid}')">Submit Claim</button>`)}
+function saveClaim(mid){let w=document.getElementById('claimWinner').value.trim();if(!w){toast('Winner का नाम लिखें');return}let f=document.getElementById('claimFile').files[0];db.claims.unshift({id:id(),match:mid,winner:w,note:document.getElementById('claimNote').value,status:'Pending',fileName:f?f.name:'No screenshot',by:db.profile.name});save();closeModal();toast('Result claim demo में submit हो गया')}
+function dispute(mid){let reason=prompt('Dispute की वजह लिखें:');if(!reason)return;db.tickets.unshift({id:id(),type:'Result Dispute',text:'Match '+mid+': '+reason,status:'Open',by:db.profile.name});save();toast('Dispute ticket बनाया गया')}
+function renderLeaderboard(){let players=[{name:db.profile.name,wins:db.matches.filter(m=>m.winner===db.profile.name).length,points:db.wallet}];db.matches.forEach(m=>m.joined.forEach(n=>{if(!players.find(p=>p.name===n))players.push({name:n,wins:m.winner===n?1:0,points:0})}));players.sort((a,b)=>b.wins-a.wins);document.getElementById('leaderList').innerHTML=players.map((p,i)=>`<div class="listrow row"><b>${i+1}. ${esc(p.name)}</b><span class="tag">${p.wins} wins</span></div>`).join('')}
+function copyText(t){if(navigator.clipboard?.writeText)navigator.clipboard.writeText(t).then(()=>toast('Copied: '+t)).catch(()=>toast(t));else toast(t)}
+function copyRef(){copyText(document.getElementById('refCode').textContent)}
+function createTicket(){let t=document.getElementById('ticketText').value.trim();if(!t){toast('समस्या लिखें');return}db.tickets.unshift({id:id(),type:document.getElementById('ticketType').value,text:t,status:'Open',by:db.profile.name});save();document.getElementById('ticketText').value='';renderTickets();toast('Support ticket बन गया')}
+function renderTickets(){document.getElementById('ticketList').innerHTML=db.tickets.filter(t=>t.by===db.profile.name).map(t=>`<div class="listrow"><b>${esc(t.type)}</b> <span class="tag">${t.status}</span><div class="muted">${esc(t.text)}</div><small>${t.id}</small></div>`).join('')||'अभी कोई ticket नहीं।'}
+function saveProfile(){db.profile.name=document.getElementById('pName').value.trim()||'Guest Player';db.profile.phone=document.getElementById('pPhone').value.trim();db.profile.city=document.getElementById('pCity').value.trim();save();toast('Profile save हो गई')}
+function adminLogin(){if(document.getElementById('adminPin').value!=='2468'){toast('Demo PIN गलत है');return}adminOn=true;document.getElementById('adminLock').classList.add('hidden');document.getElementById('adminPanel').classList.remove('hidden');renderAdmin()}
+function renderAdmin(){document.getElementById('aTotal').textContent=db.matches.length;document.getElementById('aTickets').textContent=db.tickets.length;document.getElementById('aClaims').textContent=db.claims.length;document.getElementById('adminMatches').innerHTML=db.matches.map(m=>`<div class="listrow"><div class="row"><b>${esc(m.name)} (${m.id})</b><span class="tag">${m.status}</span></div><div class="muted">Players: ${m.joined.length}/${m.players} • Room: ${esc(m.room||'—')}</div><div class="actions"><button class="secondary" onclick="adminRoom('${m.id}')">Set Room Code</button><button onclick="adminWinner('${m.id}')">Set Winner</button><button class="danger" onclick="adminClose('${m.id}')">Close Match</button></div></div>`).join('')||'<p class="muted">No matches yet.</p>';document.getElementById('adminClaims').innerHTML=db.claims.map(c=>`<div class="listrow"><b>${esc(c.winner)}</b> <span class="tag">${c.status}</span><div class="muted">${c.match} • ${esc(c.fileName)} • ${esc(c.note)}</div><button class="secondary" onclick="approveClaim('${c.id}')">Mark Reviewed</button></div>`).join('')||'<p class="muted">No claims.</p>';document.getElementById('adminTickets').innerHTML=db.tickets.map(t=>`<div class="listrow"><b>${esc(t.type)}</b> <span class="tag">${t.status}</span><div class="muted">${esc(t.text)}</div><button class="secondary" onclick="closeTicket('${t.id}')">Resolve</button></div>`).join('')||'<p class="muted">No tickets.</p>'}
+function adminRoom(mid){let m=db.matches.find(x=>x.id===mid);let r=prompt('Ludo King Room Code:',m.room||'');if(r!==null){m.room=r;save();renderAdmin()}}
+function adminWinner(mid){let m=db.matches.find(x=>x.id===mid);let w=prompt('Winner का नाम:',m.winner||'');if(w!==null){m.winner=w;m.status='Completed';save();renderAdmin()}}
+function adminClose(mid){let m=db.matches.find(x=>x.id===mid);m.status='Closed';save();renderAdmin()}
+function approveClaim(cid){let c=db.claims.find(x=>x.id===cid);c.status='Reviewed';save();renderAdmin()}
+function closeTicket(tid){let t=db.tickets.find(x=>x.id===tid);t.status='Resolved';save();renderAdmin()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function refresh(){let mine=db.matches.filter(m=>m.joined.includes(db.profile.name)||m.host===db.profile.name);document.getElementById('headerUser').textContent=db.profile.name;document.getElementById('sMatches').textContent=mine.length;document.getElementById('sWins').textContent=mine.filter(m=>m.winner===db.profile.name).length;document.getElementById('sPoints').textContent=db.wallet;document.getElementById('sRef').textContent=db.referrals;document.getElementById('walletBal').textContent=db.wallet+' pts';document.getElementById('profileName').textContent=db.profile.name;document.getElementById('profilePhone').textContent=db.profile.phone||'Phone not verified';document.getElementById('pName').value=db.profile.name;document.getElementById('pPhone').value=db.profile.phone;document.getElementById('pCity').value=db.profile.city;document.getElementById('refCode').textContent='GK-'+db.profile.name.replace(/\W/g,'').slice(0,8).toUpperCase();document.getElementById('walletLog').innerHTML=db.logs.slice(0,8).map(l=>`<div class="listrow">${esc(l.text)}<div class="muted">${esc(l.time)}</div></div>`).join('')||'अभी कोई activity नहीं।';document.getElementById('featured').innerHTML=db.matches.slice(0,2).map(m=>`<div class="card" style="margin-bottom:9px"><div class="row"><b>${esc(m.name)}</b><span class="tag">${m.status}</span></div><p class="muted">${m.id} • ${m.players} players • ${m.entry} demo pts</p><button class="secondary" onclick="showMatch('${m.id}')">View Battle</button></div>`).join('')||'<div class="card muted">अभी कोई featured battle नहीं। Create Battle से शुरुआत करें।</div>';if(adminOn)renderAdmin()}
+refresh();
+</script>
+
+<script type="module">
+// GK LUDO Firebase integration — corrected Phone OTP + Firestore
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-app.js";
+import { getAuth, RecaptchaVerifier, signInWithPhoneNumber, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-auth.js";
+import { getFirestore, collection, doc, setDoc, getDoc, getDocs, onSnapshot, query, orderBy, where, serverTimestamp, runTransaction, addDoc } from "https://www.gstatic.com/firebasejs/13.3.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCUOWCX-dWg6RdN3EP-OcVTHicX5gnM5EM",
+  authDomain: "gkludopleayr.firebaseapp.com",
+  projectId: "gkludopleayr",
+  storageBucket: "gkludopleayr.firebasestorage.app",
+  messagingSenderId: "761463153106",
+  appId: "1:761463153106:web:1c963307f8c08e912b680b",
+  measurementId: "G-P4G4GE7XRD"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const store = getFirestore(app);
+let confirmation = null, verifier = null, unsubscribeMatches = null;
+let cloudMatches = [], currentUser = null, currentProfile = {};
+const $ = id => document.getElementById(id);
+const safe = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const makeId = () => 'GK' + Math.random().toString(36).slice(2, 8).toUpperCase();
+const notify = message => window.toast(message);
+
+function setHeader() {
+  const button = document.querySelector('.top button.secondary');
+  if (button) {
+    button.textContent = currentUser ? 'Logout' : 'Login / Sign up';
+    button.onclick = currentUser ? async () => { try { await signOut(auth); notify('Logout हो गया'); } catch(e) { notify('Logout नहीं हुआ: '+e.message); } } : window.openLogin;
+  }
+  if ($('headerUser')) $('headerUser').textContent = currentProfile.name || (currentUser ? 'Player' : 'Guest Player');
+}
+
+function openOtpLogin() {
+  window.openModal('GK LUDO — Mobile OTP Login', `
+    <p class="muted">भारत का मोबाइल नंबर +91 के साथ लिखें।</p>
+    <div class="field"><label>मोबाइल नंबर</label><input id="firebasePhone" type="tel" inputmode="tel" placeholder="+919876543210" autocomplete="tel"></div>
+    <div id="firebaseRecaptcha"></div>
+    <button id="firebaseSendOtp" type="button">OTP भेजें</button>
+    <div id="firebaseOtpArea" class="hidden"><div class="field"><label>6 अंकों का OTP</label><input id="firebaseOtp" inputmode="numeric" maxlength="6" placeholder="123456"></div><button id="firebaseVerifyOtp" type="button">OTP Verify करें</button></div>
+    <p id="firebaseLoginMessage" class="muted">SMS OTP के लिए Authorized Domain और Phone provider enabled होना चाहिए।</p>`);
+  setTimeout(() => {
+    try {
+      if (verifier) { try { verifier.clear(); } catch(_) {} verifier = null; }
+      verifier = new RecaptchaVerifier(auth, 'firebaseRecaptcha', { size: 'normal' });
+      verifier.render().catch(e => { if ($('firebaseLoginMessage')) $('firebaseLoginMessage').textContent = 'reCAPTCHA error: '+e.message; });
+    } catch(e) { if ($('firebaseLoginMessage')) $('firebaseLoginMessage').textContent = 'reCAPTCHA शुरू नहीं हुआ: '+e.message; }
+    $('firebaseSendOtp')?.addEventListener('click', sendOtp);
+    $('firebaseVerifyOtp')?.addEventListener('click', verifyOtp);
+  }, 100);
+}
+window.openLogin = openOtpLogin;
+
+async function sendOtp() {
+  const phone = $('firebasePhone')?.value.trim() || '';
+  if (!/^\+[1-9]\d{7,14}$/.test(phone)) { $('firebaseLoginMessage').textContent = 'Country code सहित नंबर लिखें, जैसे +919876543210'; return; }
+  try {
+    $('firebaseSendOtp').disabled = true;
+    confirmation = await signInWithPhoneNumber(auth, phone, verifier);
+    $('firebaseOtpArea').classList.remove('hidden');
+    $('firebaseLoginMessage').textContent = 'OTP भेज दिया गया है। SMS का 6 अंकों का OTP डालें।';
+  } catch(e) {
+    $('firebaseLoginMessage').textContent = 'OTP नहीं भेजा गया: '+e.message;
+    try { verifier?.clear(); } catch(_) {} verifier = null;
+  } finally { if ($('firebaseSendOtp')) $('firebaseSendOtp').disabled = false; }
+}
+async function verifyOtp() {
+  const code = $('firebaseOtp')?.value.trim() || '';
+  if (!/^\d{6}$/.test(code)) { $('firebaseLoginMessage').textContent = '6 अंकों का सही OTP डालें।'; return; }
+  if (!confirmation) { $('firebaseLoginMessage').textContent = 'पहले OTP भेजें।'; return; }
+  try { await confirmation.confirm(code); confirmation = null; window.closeModal(); notify('OTP Login सफल!'); }
+  catch(e) { $('firebaseLoginMessage').textContent = 'OTP गलत या expire: '+e.message; }
+}
+
+async function ensureProfile(user) {
+  const ref = doc(store, 'users', user.uid);
+  const snap = await getDoc(ref);
+  if (!snap.exists()) {
+    await setDoc(ref, { uid:user.uid, phone:user.phoneNumber || '', name:'Player '+(user.phoneNumber || '').slice(-4), city:'', createdAt:serverTimestamp(), updatedAt:serverTimestamp() });
+  }
+  const fresh = await getDoc(ref);
+  return fresh.data() || {};
+}
+
+function renderCloudMatches() {
+  const list = $('battleList'); if (!list) return;
+  const term = ($('battleSearch')?.value || '').toLowerCase();
+  const filtered = cloudMatches.filter(m => (m.name+' '+m.id+' '+m.type).toLowerCase().includes(term));
+  list.innerHTML = filtered.map(m => `<div class="card" style="margin-bottom:10px"><div class="row"><div><span class="tag">${safe(m.type||'Classic')}</span> <span class="tag">${safe(m.status||'Open')}</span><h3>${safe(m.name)}</h3><div class="muted">ID: ${safe(m.id)} • ${Number(m.players||2)} Players • Host: ${safe(m.host||'Player')}</div></div><div style="text-align:right"><b>FREE</b><div class="muted">No entry fee</div></div></div><p class="muted">${safe(m.note||'No extra instructions')}</p><p class="muted">Joined: ${(m.joinedUids||[]).length}/${Number(m.players||2)}</p><div class="actions"><button onclick="showMatch('${safe(m.id)}')">Details / Join</button><button class="secondary" onclick="copyText('${safe(m.id)}')">Copy Match ID</button></div></div>`).join('') || '<div class="empty">अभी कोई battle नहीं है। Login करके पहली Battle बनाएँ।</div>';
+}
+window.renderBattles = renderCloudMatches;
+
+window.showMatch = async function(mid) {
+  const m = cloudMatches.find(x => x.id === mid); if (!m) return;
+  const isHost = m.hostUid === currentUser?.uid;
+  const isJoined = (m.joinedUids || []).includes(currentUser?.uid || '');
+  let roomCode = '';
+  if (currentUser && (isHost || isJoined)) {
+    try { const roomSnap = await getDoc(doc(store,'matches',mid,'private','room')); if (roomSnap.exists()) roomCode = roomSnap.data().code || ''; }
+    catch(e) { console.warn('Private room code not available', e); }
+  }
+  const roomHtml = (isHost || isJoined)
+    ? `<p>Room Code: <b class="code">${safe(roomCode || 'Host ने अभी नहीं डाला')}</b></p>`
+    : '<p class="muted">Room Code देखने के लिए पहले इस Match में Join करें।</p>';
+  const hostForm = isHost ? `<div class="field"><label>Room Code (सिर्फ Host बदल सकता है)</label><input id="hostRoomCode" maxlength="40" value="${safe(roomCode)}" placeholder="Ludo King Room Code"></div><button onclick="saveCloudRoom('${safe(mid)}')">Room Code Save करें</button>` : '';
+  const joinButton = (!isJoined && m.status === 'Open' && (m.joinedUids||[]).length < Number(m.players||2)) ? `<button onclick="joinCloudMatch('${safe(mid)}')">Join this Battle</button>` : (isJoined ? '<span class="tag">आप इस Match में Joined हैं</span>' : '<span class="tag">Match Full / Closed</span>');
+  window.openModal(safe(m.name), `<p class="muted">Match ID: ${safe(m.id)}</p><p>Players: ${(m.joinedUids||[]).length}/${m.players} • Status: ${safe(m.status)}</p>${roomHtml}${hostForm}<p class="muted">${safe(m.note||'')}</p>${joinButton} <button class="secondary" onclick="closeModal()">Close</button>`);
+};
+
+window.saveCloudRoom = async function(mid) {
+  if (!currentUser) { openOtpLogin(); return; }
+  const code = $('hostRoomCode')?.value.trim() || '';
+  if (code.length > 40) { notify('Room Code 40 अक्षरों से छोटा रखें।'); return; }
+  try {
+    await setDoc(doc(store,'matches',mid,'private','room'), { code, updatedAt:serverTimestamp() });
+    notify('Room Code सुरक्षित रूप से Save हो गया।');
+    await window.showMatch(mid);
+  } catch(e) { notify('Room Code save नहीं हुआ: '+e.message); }
+};
+
+window.createMatch = async function() {
+  if (!currentUser) { openOtpLogin(); return; }
+  const name = $('cName')?.value.trim() || '';
+  if (!name) { notify('Match का नाम लिखें।'); return; }
+  const players = Number($('cPlayers')?.value || 2);
+  const room = $('cRoom')?.value.trim() || '';
+  const id = makeId();
+  try {
+    const data = { id, name, players, type:$('cType').value, note:$('cNote').value.trim(), host:currentProfile.name || 'Player', hostUid:currentUser.uid, joinedUids:[currentUser.uid], joinedNames:[currentProfile.name || 'Player'], status:'Open', winner:'', createdAt:serverTimestamp(), updatedAt:serverTimestamp() };
+    await setDoc(doc(store,'matches',id), data);
+    if (room) await setDoc(doc(store,'matches',id,'private','room'), { code:room, updatedAt:serverTimestamp() });
+    ['cName','cRoom','cNote'].forEach(k => { if ($(k)) $(k).value=''; });
+    notify('Battle Firebase में बन गई: '+id);
+    window.go('battles');
+  } catch(e) { notify('Match save नहीं हुआ: '+e.message); }
+};
+
+window.joinCloudMatch = async function(mid) {
+  if (!currentUser) { openOtpLogin(); return; }
+  try {
+    await runTransaction(store, async tx => {
+      const ref = doc(store,'matches',mid), snap = await tx.get(ref);
+      if (!snap.exists()) throw new Error('Match नहीं मिला।');
+      const m = snap.data(), ids = m.joinedUids || [];
+      if (ids.includes(currentUser.uid)) return;
+      if (m.status !== 'Open') throw new Error('यह Match Open नहीं है।');
+      if (ids.length >= Number(m.players||2)) throw new Error('यह Match Full है।');
+      tx.update(ref, { joinedUids:[...ids,currentUser.uid], joinedNames:[...(m.joinedNames||[]),currentProfile.name||'Player'], updatedAt:serverTimestamp() });
+    });
+    notify('आप Match में Join हो गए!');
+    await window.showMatch(mid);
+  } catch(e) { notify('Join नहीं हुआ: '+e.message); }
+};
+window.joinMatch = async function() {
+  const code = $('joinCode')?.value.trim().toUpperCase() || '';
+  if (!code) { notify('Match ID लिखें।'); return; }
+  const match = cloudMatches.find(m => m.id.toUpperCase() === code);
+  if (!match) { notify('Match ID नहीं मिला। Battles में उपलब्ध Match ID देखें।'); return; }
+  await window.joinCloudMatch(match.id);
+};
+
+window.saveProfile = async function() {
+  if (!currentUser) { openOtpLogin(); return; }
+  const name = $('pName')?.value.trim() || 'Player';
+  const city = $('pCity')?.value.trim() || '';
+  try {
+    await setDoc(doc(store,'users',currentUser.uid), { uid:currentUser.uid, phone:currentUser.phoneNumber||'', name, city, updatedAt:serverTimestamp() }, {merge:true});
+    currentProfile = {...currentProfile,name,city}; setHeader();
+    if ($('profileName')) $('profileName').textContent = name;
+    notify('Profile Firebase में Save हो गई।');
+  } catch(e) { notify('Profile save नहीं हुई: '+e.message); }
+};
+
+window.createTicket = async function() {
+  if (!currentUser) { openOtpLogin(); return; }
+  const message = $('ticketText')?.value.trim() || '';
+  if (!message) { notify('अपनी समस्या लिखें।'); return; }
+  try {
+    await addDoc(collection(store,'tickets'), { uid:currentUser.uid, by:currentProfile.name||currentUser.phoneNumber||'Player', type:$('ticketType').value, text:message, status:'Open', createdAt:serverTimestamp() });
+    $('ticketText').value=''; notify('Support Ticket Firebase में Submit हो गया।'); await renderMyTickets();
+  } catch(e) { notify('Ticket submit नहीं हुआ: '+e.message); }
+};
+async function renderMyTickets() {
+  const el = $('ticketList'); if (!el || !currentUser) return;
+  try {
+    const snap = await getDocs(query(collection(store,'tickets'),where('uid','==',currentUser.uid)));
+    const rows = snap.docs.map(d=>d.data()).sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
+    el.innerHTML = rows.map(t=>`<div class="listrow"><b>${safe(t.type)}</b> <span class="tag">${safe(t.status||'Open')}</span><div class="muted">${safe(t.text)}</div></div>`).join('') || 'अभी कोई ticket नहीं।';
+  } catch(e) { el.textContent = 'Tickets लोड नहीं हुए: '+e.message; }
+}
+
+function renderCloudHistory() {
+  const el = $('historyList'); if (!el) return;
+  const mine = cloudMatches.filter(m => (m.joinedUids||[]).includes(currentUser?.uid || '') || m.hostUid === currentUser?.uid);
+  el.innerHTML = mine.map(m=>`<div class="listrow row"><div><b>${safe(m.name)}</b><div class="muted">${safe(m.id)} • ${safe(m.status)}</div></div><button class="secondary" onclick="showMatch('${safe(m.id)}')">Details</button></div>`).join('') || '<div class="empty">आपकी Match History अभी खाली है।';
+}
+
+function startMatchListener() {
+  if (unsubscribeMatches) unsubscribeMatches();
+  const q = query(collection(store,'matches'),orderBy('createdAt','desc'));
+  unsubscribeMatches = onSnapshot(q, snap => {
+    cloudMatches = snap.docs.map(d=>({...d.data(),id:d.id}));
+    renderCloudMatches(); renderCloudHistory();
+    const featured = $('featured');
+    if (featured) featured.innerHTML = cloudMatches.slice(0,2).map(m=>`<div class="card" style="margin-bottom:9px"><div class="row"><b>${safe(m.name)}</b><span class="tag">${safe(m.status)}</span></div><p class="muted">${safe(m.id)} • ${m.players} players</p><button class="secondary" onclick="showMatch('${safe(m.id)}')">View Battle</button></div>`).join('') || '<div class="card muted">अभी कोई featured battle नहीं। Create Battle से शुरुआत करें।</div>';
+    const mine = cloudMatches.filter(m=>(m.joinedUids||[]).includes(currentUser.uid) || m.hostUid===currentUser.uid);
+    if ($('sMatches')) $('sMatches').textContent = mine.length;
+    if ($('sWins')) $('sWins').textContent = mine.filter(m=>m.winner===currentUser.uid).length;
+  }, err => { console.error(err); notify('Firestore error: '+err.message); });
+}
+
+onAuthStateChanged(auth, async user => {
+  currentUser = user;
+  if (user) {
+    try {
+      currentProfile = await ensureProfile(user);
+      if ($('profileName')) $('profileName').textContent = currentProfile.name || 'Player';
+      if ($('profilePhone')) $('profilePhone').textContent = user.phoneNumber || '';
+      if ($('pName')) $('pName').value = currentProfile.name || '';
+      if ($('pPhone')) $('pPhone').value = user.phoneNumber || '';
+      if ($('pCity')) $('pCity').value = currentProfile.city || '';
+      setHeader(); startMatchListener(); await renderMyTickets();
+      if ($('sPoints')) $('sPoints').textContent = 'Demo';
+      if ($('sRef')) $('sRef').textContent = 'Demo';
+    } catch(e) { console.error(e); notify('Profile load error: '+e.message); }
+  } else {
+    currentProfile = {};
+    if (unsubscribeMatches) { unsubscribeMatches(); unsubscribeMatches=null; }
+    cloudMatches=[]; renderCloudMatches(); renderCloudHistory(); setHeader();
+    if ($('profilePhone')) $('profilePhone').textContent = 'Phone not verified';
+  }
+});
+
+// These pages are intentionally demo-only until secure backend services exist.
+window.demoLogin = () => notify('कृपया Firebase OTP Login इस्तेमाल करें।');
+window.adminLogin = () => notify('Admin Panel अभी बंद है। Secure server-side setup जरूरी है।');
+window.adminRoom = window.adminWinner = window.adminClose = window.approveClaim = window.closeTicket = () => notify('Admin सुविधा अभी उपलब्ध नहीं है।');
+window.claimResult = window.saveClaim = window.dispute = () => notify('Result/Dispute का Cloud workflow अभी तैयार नहीं है। Support Ticket इस्तेमाल करें।');
+
+// Refresh profile header on initial page load without opening the login modal.
+setHeader();
+</script>
+</body></html>
